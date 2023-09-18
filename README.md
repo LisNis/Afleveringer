@@ -1,4 +1,4 @@
 # Projekt
 Første projekt
 
-Alle mine Afleveringsopgaver ligger her :)
+Alle mine afleveringsopgaver ligger her :)
