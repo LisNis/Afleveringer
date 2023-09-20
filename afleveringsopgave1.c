@@ -28,11 +28,13 @@ int main(void) {
         int minuter = sekunterRest / sekunterIMinutet;
         sekunterRest %= sekunterIMinutet;
 
-        printf("Det svarer til %d uger, %d dage, %d timer, "
-               "%d minuter og %d sekunter", uger, dage, timer, minuter, sekunterRest);
+        printf("Det svarer til %d uger, %d dage, %d timer, %d minuter og %d sekunter", uger, dage, timer, minuter, sekunterRest);
 
     // For at ungaar at programmet bryder sammen, hvis man intaster noget forkert
-    } else { printf("Det input skal være et positivt tal");}
+    } else { 
+        printf("Det input skal være et positivt tal");
+    }
+    
 return 0;
 }
 
