@@ -4,8 +4,7 @@
 
 // Et program der finder gcd af to positive tal
 
-int main(void)
-{
+int main(void){
     int numberA, numberB, gcd;
 
     printf("Please enter two numbers, a and b: ");
@@ -21,7 +20,7 @@ int main(void)
             }
         }printf("The gcd of the numbers a and b is: %d", gcd);
 
-    }else {
+    }else{
         printf("A need to be greater than or equal to B and they need to be two positive numbers");
     }
 
