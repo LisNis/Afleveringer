@@ -23,7 +23,7 @@ int main() {
         return 1;
     }
     
-    result = sum(x, a, b, n);
+    result = sum(n, x, a, b);
     printf("The areal of the integral is: %lf", result);
 
     return 0;
