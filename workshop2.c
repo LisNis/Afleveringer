@@ -83,13 +83,29 @@ int main(void){
 int LinSearch(int array[], int x){
   int i=0;
   /* Fill in your code HERE! */
-
+  while (i < N && x != array[i]){
+      i = i + 1;
+  }    
+  if (i < N){
+    return i;    
+  } else return -1;
+  
   return i;
 }
 
 int BinSearch(int array[], int x){
-  int i=0;
+  int i = 0;
   /* Fill in your code HERE */
+  j = N − 1;
+  while (i < j){
+    int m = ( i + j ) / 2;
+    if ( x > array[m] ){
+    i = m + 1;
+    }else j = m;
+  }  
+  if ( x == array[i] ){
+    return i;
+  }else return -1;
 
   return i;
 }
