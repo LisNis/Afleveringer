@@ -1,73 +1,76 @@
-
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <stdbool.h>
+#include "calculator.h"
 
-int main(){
-
-    char input[10];
+int main(void) {
     int i = 0;
+    char lastop = '?';
+    char input[10];
     double result = 0.0;
     double resultNeu = 0.0;
-    char lasop = '?';
-    char currentchar;
 
-    bool stopnow = flase;
-
-while !stopnow
-    {
-        printf("Input eingeben: ");
+    printf("Giv et input, resultet er: %lf >", result);
+    do {
         scanf("%s", &input);
-        printf("Eingabe: %s \n", input);
+        printf("Inputet: %s \n", input);
 
         int lenstr = strlen(input);
-        printf("%d \n", lenstr);
+        printf("Length: %d \n", lenstr);
 
-        while (i < lenstr) {
-            printf("Lasop: %c \n", lasop);
+            printf("Lasop: %c \n", lastop);
             if (input[i] < 58 && input[i] > 47) { // 0-9
                 resultNeu = 10 * resultNeu + input[i] - 48;
-                if (lasop != '?')
-                    switch (lasop) {
-                        case '+':
-                            lasop = '?';
-                            resultNeu = result + resultNeu;
-                            break;
-                    } // end switch
+
             } else {
                 switch (input[i]) {
                     case (43): // +
-                        lasop = '+';
+                        lastop = '+';
                         result = resultNeu;
                         resultNeu = 0.0;
                         break;
-                    case (44): // -
-
+                    case (45): // -
+                        lastop = '-';
+                        result = resultNeu;
+                        resultNeu = 0.0;
                         break;
-                    case (45): // *
-
+                    case (42): // *
+                        lastop = '*';
+                        result = resultNeu;
+                        resultNeu = 0.0;
                         break;
-                    case (46): // /
-
+                    case (47): // /
+                        lastop = '/';
+                        result = resultNeu;
+                        resultNeu = 0.0;
                         break;
-                    case (47): // #
-
+                    case (35): // #
+                        lastop = '#';
+                        result = resultNeu;
+                        resultNeu = 0.0;
                         break;
-                    case (48): // !
-
+                    case (33): // !
+                        lastop = '!';
+                        result = resultNeu;
+                        resultNeu = 0.0;
                         break;
-                    case (49): // %
-
+                    case (37): // %
+                        lastop = '%';
+                        result = resultNeu;
+                        resultNeu = 0.0;
                         break;
-                    case (50): // q
+                    case (113): // q
+                        lastop = 'q';
+                        break;
+                }// end switch
+            }// end else
 
-                        stopnow = true;
-                }  // switch
-            } // else
-
-            i = i + 1;
-        }// end while
         result = resultNeu;
-        printf("Das ergebnis ist: %f", result);
-    } // stopnow
+        printf("Giv et input, result er: %lf >", result);
+
+    } // end do
+    while(lastop != 'q');
+
+    return 0;
 } // end main
