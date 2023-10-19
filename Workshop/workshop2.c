@@ -62,7 +62,7 @@ int main(void){
 
   /* Prints the result */
   int result=LinSearch(array, x);
-  if (result == 0){
+  if (result == -1){
      printf("LinSearch: %d is not in the list \n",x);
   }
   else {
@@ -70,7 +70,7 @@ int main(void){
     }
 
   result=BinSearch(array, x);
-  if (result == 0){
+  if (result == -1){
      printf("BinSearch: %d is not in the list \n",x);
   }
   else {
