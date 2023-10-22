@@ -1,76 +1,73 @@
+/*
+# for kvadratroden af akkumulatoren
+% for at vende fortegnet af akkumulatoren
+! for at dividere 1 med akkumulatoren
+q for at afslutte regnemaskinen med slutresultatet
+*/
+
+
 #include <stdio.h>
 #include <math.h>
-#include <string.h>
-#include <stdbool.h>
-#include "calculator.h"
+#include <stdlib.h>
 
-int main(void) {
-    int i = 0;
-    char lastop = '?';
-    char input[10];
+int main() {
     double result = 0.0;
-    double resultNeu = 0.0;
+    char operator;
+    double tal;
 
-    printf("Giv et input, resultet er: %lf >", result);
-    do {
-        scanf("%s", &input);
-        printf("Inputet: %s \n", input);
+    printf("Result er: %.2lf\n", result);
 
-        int lenstr = strlen(input);
-        printf("Length: %d \n", lenstr);
+    while (1) {
+        printf("Indtast en operator (q, #, procenttegn, !) eller en operator (+, -, *, /) med et tal: ");
+        scanf(" %c", &operator);
 
-            printf("Lasop: %c \n", lastop);
-            if (input[i] < 58 && input[i] > 47) { // 0-9
-                resultNeu = 10 * resultNeu + input[i] - 48;
+        if (operator == 'q' || operator == 'Q') {
+            printf("Programmet blev afsluttet.\n");
+            break;
+        }
 
-            } else {
-                switch (input[i]) {
-                    case (43): // +
-                        lastop = '+';
-                        result = resultNeu;
-                        resultNeu = 0.0;
-                        break;
-                    case (45): // -
-                        lastop = '-';
-                        result = resultNeu;
-                        resultNeu = 0.0;
-                        break;
-                    case (42): // *
-                        lastop = '*';
-                        result = resultNeu;
-                        resultNeu = 0.0;
-                        break;
-                    case (47): // /
-                        lastop = '/';
-                        result = resultNeu;
-                        resultNeu = 0.0;
-                        break;
-                    case (35): // #
-                        lastop = '#';
-                        result = resultNeu;
-                        resultNeu = 0.0;
-                        break;
-                    case (33): // !
-                        lastop = '!';
-                        result = resultNeu;
-                        resultNeu = 0.0;
-                        break;
-                    case (37): // %
-                        lastop = '%';
-                        result = resultNeu;
-                        resultNeu = 0.0;
-                        break;
-                    case (113): // q
-                        lastop = 'q';
-                        break;
-                }// end switch
-            }// end else
+        if (operator == 33 || operator == 35 || operator == 37){
+            switch (operator) {
+                case '!':
+                    result = 1 / result;
+                    break;
+                case '%':
+                    result = result * -1;
+                    break;
+                case '#':
+                    result = sqrt(result);
+                    break;
+            }
+        } else if (operator == 43 || operator == 45 || operator == 42 || operator == 92 || operator == 94) {
+            scanf("%lf", &tal);
 
-        result = resultNeu;
-        printf("Giv et input, result er: %lf >", result);
+            switch (operator) {
+                case '+':
+                    result = result + tal;
+                    break;
+                case '-':
+                    result = result - tal;
+                    break;
+                case '*':
+                    result = result * tal;
+                    break;
+                case '^':
+                    result = pow(result, tal);
+                    break;
+                case '/':
+                    if (tal != 0) {
+                        result = result / tal;
+                    } else {
+                        printf("Man kan ikke dividere med 0.\n");
+                    }
+                    break;
+            }// end switch
+        } else {
+            printf("Operatoren findes ikke, indtast +, -, *, /, eller q for at afslutte programmet.\n");
+        } // end if/else
 
-    } // end do
-    while(lastop != 'q');
+        printf("Det nye resultat: %.2lf\n", result);
+    }// end while
 
     return 0;
 } // end main
