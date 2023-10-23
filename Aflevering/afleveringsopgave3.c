@@ -5,42 +5,60 @@
 #include <math.h>
 
 double f(double x);
-double sum(int n, double x, double a, double b);
+double sigma(int n, double a, double b);
+double trap(int n, double a, double b);
+
 
 int main() {
-    double a, b, x, result;
+    double a, b;
     int n;
 
-    printf("Enter a: ");
-    scanf("%lf", &a);
-    printf("Enter b: ");
-    scanf("%lf", &b);
-    printf("Enter n: ");
+    printf("Enter the interval a, b: ");
+    scanf("%lf %lf", &a, &b);
+
+    printf("Enter the value of n (2,4,8,16,32,64,128): ");
     scanf("%d", &n);
 
     if (n <= 0) {
-        printf("n need to be a positive number.\n");
+        printf("N must be greater than 0.\n");
         return 1;
     }
-    
-    result = sum(n, x, a, b);
-    printf("The areal of the integral is: %lf", result);
+
+    double result = trap(n, a, b);
+
+    printf("Arealet er: %.6lf\n", result);
 
     return 0;
-}
+} // end main
 
 
+// functionen f
 double f(double x) {
-    return sqrt(4 - pow(x, 2));
+    if (x >= -2 && x <= 2) {
+        return sqrt(4 - pow(x, 2));
+    } else {
+        return 0;
+    } // a:-2, b:2, ellers nan
 }
 
-double sum(int n, double x, double a, double b){
+
+// beregner summen af funktionen
+double sigma(int n, double a, double b){
     double h = (b - a) / n;
+    printf("H er %lf\n", h);
     double sum = 0;
     for (int i = 1; i < n; i++){
-        x = a + i * h;
+        double x = a + i * h;
         sum = sum + f(x);
     }
-    double areal = h/2*(f(a) + 2 * sum + f(b));
+    printf("Summen er: %lf\n", sum);
+    return sum;
+}
+
+// beregner arealet
+double trap(int n, double a, double b) {
+    double h = (b - a) / n;
+    double sum = sigma(n, a, b);
+    double areal = h / 2 * (f(a) + 2 * sum + f(b));
     return areal;
 }
